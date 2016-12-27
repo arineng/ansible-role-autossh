@@ -24,3 +24,4 @@ autossh_connections:
     dest_port: ""
     server_key_type: "ecdsa"
     identity_file: ""
+    forward_mode: "-L"

@@ -12,3 +12,10 @@
   shell: ssh-keyscan -t {{ item.server_key_type | default(autossh_default_server_key_type) }} {{ item.server }} >> {{ autossh_known_hosts_file }}
   changed_when: false
   with_items: "{{ autossh_connections }}"
+
+- name: Check forward_mode is set properly
+  assert:
+    that:
+      - "item.forward_mode == '-L' or item.forward_mode == '-R'"
+  with_items:
+    "{{ autossh_connections }}"
